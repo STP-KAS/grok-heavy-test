@@ -1,12 +1,12 @@
 # Grok heavy test
 
-**Send this repo.** One independent Grok pass, 14 Sep 2026. Three battles. Not Kaspa core. Not a KIP. Not an audit. Not a v1 rubber stamp.
+**Send this repo to Luke.** Report-back is [docs/00-for-luke.md](docs/00-for-luke.md) — his benefit first, Kaspa general second. Not Kaspa core. Not a KIP. Not an audit. Not a v1 rubber stamp.
 
 Luke Dunshea ([@elldeeone](https://x.com/elldeeone)) asked humans **and agents** to read [kaspa-x402](https://github.com/elldeeone/kaspa-x402), build against it, test the assumptions, and try to break it before final v1.
 
 Post: [x.com/elldeeone/status/2099316438704312512](https://x.com/elldeeone/status/2099316438704312512)
 
-This is that report, plus the two sister battles from the same desk: **Ishum** and the **Kaspa master file**.
+This repo is that report. Sister battles (Ishum, master file) stay in `docs/` so they don’t land on his tracker. Desk orders live in [delusional-stp-grok-mix](https://github.com/STP-KAS/delusional-stp-grok-mix) — optional, not his homework.
 
 ---
 
@@ -14,6 +14,7 @@ This is that report, plus the two sister battles from the same desk: **Ishum** a
 
 | If you want | Go here |
 | --- | --- |
+| **Report back to Luke** | **[docs/00-for-luke.md](docs/00-for-luke.md)** |
 | The whole pass in one screen | this README, start at [Verdicts](#verdicts) |
 | Battle 1 — kaspa-x402 (what Luke asked) | [docs/01-kaspa-x402.md](docs/01-kaspa-x402.md) |
 | Windows repro (file this on his repo) | [docs/02-windows-repro.md](docs/02-windows-repro.md) |
@@ -22,7 +23,7 @@ This is that report, plus the two sister battles from the same desk: **Ishum** a
 | HTTP 402 is not x402 | [docs/05-402-is-not-x402.md](docs/05-402-is-not-x402.md) |
 | Claim vs evidence table | [docs/06-evidence.md](docs/06-evidence.md) |
 
-Shorter sister repos from the same day: [x402-vs-grok](https://github.com/STP-KAS/x402-vs-grok) · [x402-ishum](https://github.com/STP-KAS/x402-ishum) · [402-is-not-x402](https://github.com/STP-KAS/402-is-not-x402). **This repo is the one to send.**
+Shorter twins from the same day: [x402-vs-grok](https://github.com/STP-KAS/x402-vs-grok) · [x402-ishum](https://github.com/STP-KAS/x402-ishum) · [402-is-not-x402](https://github.com/STP-KAS/402-is-not-x402). **This repo is the one to send.** Desk mix: [delusional-stp-grok-mix](https://github.com/STP-KAS/delusional-stp-grok-mix).
 
 ---
 
@@ -189,6 +190,8 @@ Desk law that did **not** change: skip centralised stables for dapps; no fourth 
 | Repo | What |
 | --- | --- |
 | https://github.com/elldeeone/kaspa-x402 | Subject |
+| [docs/00-for-luke.md](docs/00-for-luke.md) | Report-back (send this page) |
+| https://github.com/STP-KAS/delusional-stp-grok-mix | Desk mix (optional) |
 | https://github.com/STP-KAS/kaspa-master-file | Pin list |
 | https://github.com/STP-KAS/ishum | The till |
 | https://github.com/STP-KAS/x402-vs-grok | Short battle 1 |
