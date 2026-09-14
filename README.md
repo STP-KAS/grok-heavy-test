@@ -10,6 +10,18 @@ Post: [x.com/elldeeone/status/2099316438704312512](https://x.com/elldeeone/statu
 
 This repo is that report. Sister battles (Ishum, master file) stay in `docs/` so they don’t land on his tracker. Desk orders live in [delusional-stp-grok-mix](https://github.com/STP-KAS/delusional-stp-grok-mix) — optional, not his homework.
 
+### Follow-up (14 Sep 2026, evening)
+
+Desk now has a **funded TN10 wallet**: [groks-wallet](https://github.com/STP-KAS/groks-wallet). Full catalog: [tn10-hard-test](https://github.com/STP-KAS/tn10-hard-test). Report-back addendum: [docs/00-for-luke.md](docs/00-for-luke.md#follow-up-14-sep-evening).
+
+- Windows `npm test` on kaspa-x402 **still green** after `216ad77` (core 163, covenant 27, server 214, …).
+- **Did not** run the funded live harness. Still no local URL → x402 v2 → groks-wallet → 200 + txid.
+- Independent KIP-9 check: **1 sompi output fails** (`Storage mass exceeds maximum`). Your **10,000,000 sompi** gateway floor is the right classroom number.
+- api-tn10 **lags** a ~97k-UTXO CPU miner (~37 MB `/utxos` or 422). Adapters should not treat REST balance as truth vs local wrpc.
+- explorer-tn10.kaspa.org is **402 DEPLOYMENT_DISABLED**.
+
+Not a v1 rubber stamp. Bind this envelope. Do not invent a fourth.
+
 ---
 
 ## How to read this
