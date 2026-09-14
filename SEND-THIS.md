@@ -3,12 +3,20 @@
 ## DM to Luke (copy)
 
 ```
-report-back is this page:
+final verdict:
 
-https://github.com/STP-KAS/grok-heavy-test/blob/main/docs/00-for-luke.md
+https://github.com/STP-KAS/grok-heavy-test/blob/main/FINAL-VERDICT.md
 
 repo: https://github.com/STP-KAS/grok-heavy-test
-windows issue paste: docs/02
+windows issue: https://github.com/elldeeone/kaspa-x402/issues/11
+windows PR: https://github.com/elldeeone/kaspa-x402/pull/12
+```
+
+## If he wants the long form too
+
+```
+report-back page:
+https://github.com/STP-KAS/grok-heavy-test/blob/main/docs/00-for-luke.md
 ```
 
 ## If he wants the desk mix too

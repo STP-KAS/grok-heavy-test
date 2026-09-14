@@ -1,6 +1,9 @@
 # Windows repro — paste this as an issue
 
-Open: https://github.com/elldeeone/kaspa-x402/issues/new
+**Filed:** https://github.com/elldeeone/kaspa-x402/issues/11
+**PR:** https://github.com/elldeeone/kaspa-x402/pull/12
+
+Open (if filing again): https://github.com/elldeeone/kaspa-x402/issues/new
 
 ## Title (copy)
 
