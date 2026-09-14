@@ -5,11 +5,11 @@
 ```
 final verdict:
 
-https://github.com/STP-KAS/grok-heavy-test/blob/main/FINAL-VERDICT.md
+https://sixpack.wtf
 
+github: https://github.com/STP-KAS/grok-heavy-test/blob/main/FINAL-VERDICT.md
 repo: https://github.com/STP-KAS/grok-heavy-test
-windows issue: https://github.com/elldeeone/kaspa-x402/issues/11
-windows PR: https://github.com/elldeeone/kaspa-x402/pull/12
+windows: https://github.com/elldeeone/kaspa-x402/pull/12 merged 216ad77
 ```
 
 ## If he wants the long form too

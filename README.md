@@ -2,7 +2,7 @@
 
 **Send this repo to Luke.** Final verdict is **[FINAL-VERDICT.md](FINAL-VERDICT.md)**. Long form: [docs/00-for-luke.md](docs/00-for-luke.md) — his benefit first, Kaspa general second. Not Kaspa core. Not a KIP. Not an audit. Not a v1 rubber stamp.
 
-Windows clone-and-test is filed and patched: [elldeeone/kaspa-x402#11](https://github.com/elldeeone/kaspa-x402/issues/11) · [PR #12](https://github.com/elldeeone/kaspa-x402/pull/12).
+Windows clone-and-test is merged: [elldeeone/kaspa-x402#11](https://github.com/elldeeone/kaspa-x402/issues/11) · [PR #12](https://github.com/elldeeone/kaspa-x402/pull/12) → `216ad77`. Public page: [https://sixpack.wtf](https://sixpack.wtf).
 
 Luke Dunshea ([@elldeeone](https://x.com/elldeeone)) asked humans **and agents** to read [kaspa-x402](https://github.com/elldeeone/kaspa-x402), build against it, test the assumptions, and try to break it before final v1.
 
@@ -16,7 +16,8 @@ This repo is that report. Sister battles (Ishum, master file) stay in `docs/` so
 
 | If you want | Go here |
 | --- | --- |
-| **Final verdict (send this)** | **[FINAL-VERDICT.md](FINAL-VERDICT.md)** |
+| **Public verdict** | **[https://sixpack.wtf](https://sixpack.wtf)** |
+| **Final verdict (send this GitHub)** | **[FINAL-VERDICT.md](FINAL-VERDICT.md)** |
 | **Report back to Luke** | **[docs/00-for-luke.md](docs/00-for-luke.md)** |
 | The whole pass in one screen | this README, start at [Verdicts](#verdicts) |
 | Battle 1 — kaspa-x402 (what Luke asked) | [docs/01-kaspa-x402.md](docs/01-kaspa-x402.md) |
@@ -54,9 +55,9 @@ This is a **real x402 v2 binding** for native KAS. It is not another HTTP 402 co
 
 It is **not v1**, **not mainnet**, **not in the upstream x402 registry**, **not a registered CAIP namespace**. Do not call RC1 “Kaspa has x402.”
 
-Windows `npm test` **failed on a default checkout**. That is a real break of “clone it and run the tests.” It is not a break of the covenant math. After the patch in [PR #12](https://github.com/elldeeone/kaspa-x402/pull/12), this machine: covenant 27/27, full `npm test` green, `proof:offline` **24/24** `ok: true`. Hosted `/supported` is `x402Version: 2`, asset `KAS`, network `kaspa:testnet-10` only. Native KAS is the right asset. A future stable needs its own binding.
+Windows `npm test` **failed on a default checkout of `v1.0.0-rc.1`**. That is a real break of “clone it and run the tests.” It is not a break of the covenant math. [PR #12](https://github.com/elldeeone/kaspa-x402/pull/12) merged as `216ad77` with Luke’s narrower disk-sync split and a `windows-latest` CI job. Fresh clone of merged `main` on this machine: `.sil` is LF, covenant 27/27, full `npm test` green, `proof:offline` **24/24** `ok: true`. Hosted `/supported` is `x402Version: 2`, asset `KAS`, network `kaspa:testnet-10` only. Native KAS is the right asset. A future stable needs its own binding.
 
-Full: [docs/01-kaspa-x402.md](docs/01-kaspa-x402.md) · filed: [issue #11](https://github.com/elldeeone/kaspa-x402/issues/11) · patch: [PR #12](https://github.com/elldeeone/kaspa-x402/pull/12)
+Full: [docs/01-kaspa-x402.md](docs/01-kaspa-x402.md) · filed: [issue #11](https://github.com/elldeeone/kaspa-x402/issues/11) · merged: [PR #12](https://github.com/elldeeone/kaspa-x402/pull/12)
 
 ### Battle 2 — Ishum
 
@@ -98,13 +99,13 @@ Did **not** run a funded live harness (needs a TN10 wallet). Did **not** pay the
 | CRLF on this disk | `ab88ec5da53d1e716bb1f1322182d48bbb2c9fed9b0078f9d718a022282f48c6` |
 | LF (the pin) | `065dff5d0d02f3a09f56bab977a33d4e047f2ccec64c0d066a318d342797fcb0` |
 
-CI is `ubuntu-latest` only. Linux never sees this.
+CI on the RC.1 tag was `ubuntu-latest` only. Linux never saw this. Merged `main` now has a `windows-latest` job.
 
 **2. Unix `0o600` on Windows.** `proof-output-security.test.mjs` expects mode 384. This machine got 438 (`0o666`). Secret-scrub is the real requirement; the mode assert is POSIX-only.
 
 **3. `fsync` EPERM.** Offline protocol checks passed. Writing the report failed closed on this OS.
 
-Fix for (1): `*.sil text eol=lf`. Hash LF-normalized bytes. Add a Windows CI job, or skip Unix modes on `win32`.
+What landed: `*.sil text eol=lf` (enough — no hash canonicalization), skip Unix modes on `win32`, skip directory `fsync` on Windows, file `fsync` stay fail-closed, `windows-latest` CI.
 
 ### What it is
 
@@ -132,7 +133,7 @@ The escrow **does** lock successor value on claim (`tx.outputs[1].value == input
 
 ### Pushback that survives the tests
 
-1. Windows is not a first-class verifier. An agent cannot “run the tests” on the advertised command.
+1. Windows was not a first-class verifier on `v1.0.0-rc.1`. Merged `216ad77` makes clone-and-test work here. Remaining v1 gates are still open.
 2. Replay protection lives in the store. Lose the store, replay reopens.
 3. Claim has no DAA cap; refund does. After timeout, buyer refund and server claim **race**. They refused to ship upstream `upto` for this reason and shipped it for batch anyway.
 4. Batch “500 sompi per call” still locks ~10M sompi-class capital on chain. Omitting the lockup is a lie.
@@ -182,7 +183,7 @@ Desk law that did **not** change: skip centralised stables for dapps; no fourth 
 
 | Who | Do |
 | --- | --- |
-| Luke | Read [FINAL-VERDICT.md](FINAL-VERDICT.md). Accept [issue #11](https://github.com/elldeeone/kaspa-x402/issues/11). Merge [PR #12](https://github.com/elldeeone/kaspa-x402/pull/12). Add a Windows CI job. Do not take “v1” until the gates you already wrote are closed. |
+| Luke | Read [https://sixpack.wtf](https://sixpack.wtf) and [FINAL-VERDICT.md](FINAL-VERDICT.md). Windows clone-and-test is merged (`216ad77`). Do not take “v1” until the gates you already wrote are closed. |
 | This desk | Bind the envelope. Do not invent a fourth 402. Keep Ishum a till. Keep kUSD off the keypad until capital exists — and even then it is not this `asset`. |
 | Anyone else | HTTP 402 ≠ x402. Native KAS ≠ USDC. `accepted` ≠ irreversible. |
 
@@ -192,6 +193,7 @@ Desk law that did **not** change: skip centralised stables for dapps; no fourth 
 
 | Repo | What |
 | --- | --- |
+| https://sixpack.wtf | Public verdict |
 | https://github.com/elldeeone/kaspa-x402 | Subject |
 | [docs/00-for-luke.md](docs/00-for-luke.md) | Report-back (send this page) |
 | https://github.com/STP-KAS/delusional-stp-grok-mix | Desk mix (optional) |
