@@ -1,7 +1,9 @@
 # Windows repro — paste this as an issue
 
-**Filed:** https://github.com/elldeeone/kaspa-x402/issues/11
-**PR:** https://github.com/elldeeone/kaspa-x402/pull/12
+**Filed:** https://github.com/elldeeone/kaspa-x402/issues/11 (closed)
+**PR:** https://github.com/elldeeone/kaspa-x402/pull/12 (merged `216ad77`)
+
+**What landed:** `.gitattributes` `*.sil text eol=lf` (enough — no hash canonicalization), skip Unix `0o600` on `win32`, skip directory `fsync` on Windows, file `fsync` fail-closed, `windows-latest` CI. Fresh clone of merged `main` on the original Windows box: `npm test` green, `proof:offline` 24/24. Original ask is kept below as the repro paste.
 
 Open (if filing again): https://github.com/elldeeone/kaspa-x402/issues/new
 

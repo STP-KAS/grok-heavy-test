@@ -22,8 +22,8 @@ Review 2026-09-14. Tag `v1.0.0-rc.1` @ `040b1ec`.
 | `State[].split()` tuples safe | unused; **#249/#250** open | **wrong** on v1.0.0 |
 | Compute budget from compiler | **#243** open; local 9999/10000 | **wrong** |
 | 30 conf = Kaspa finality | README: deployment policy | **wrong** if claimed consensus |
-| `npm test` on Windows | this machine: CRLF hash fail; 0600 fail | **broken** on default checkout |
-| Offline protocol checks | 22/22 `ok: true` then fsync EPERM | **live** with a Windows write-out fail |
+| `npm test` on Windows | RC.1 tag: CRLF hash fail + 0600 fail. Merged `216ad77`: `.sil` LF, tests green | **fixed** on merged `main`; **broken** on the RC.1 tag |
+| Offline protocol checks | RC.1: 22/22 then fsync EPERM. Merged `216ad77`: 24/24 `ok: true` | **live** on merged `main` |
 | Independent audit | readiness gate open | **absent** |
 | Stables work without new binding | Luke + hardcoded KAS | **wrong** |
 

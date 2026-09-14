@@ -5,6 +5,8 @@ What Luke asked for. Full grok test / analyse / reasoning / advice.
 Subject: [elldeeone/kaspa-x402](https://github.com/elldeeone/kaspa-x402) tag **`v1.0.0-rc.1`** (`040b1ec8335abadbb3c69cf1ea720ae45816b0f7`).  
 Ask: [x.com/elldeeone/status/2099316438704312512](https://x.com/elldeeone/status/2099316438704312512)
 
+**Status 14 Sep evening:** Windows clone-and-test merged as [`216ad77`](https://github.com/elldeeone/kaspa-x402/commit/216ad773d9dc522769dfab8e5deb01eb70f0e849). Public verdict: [https://sixpack.wtf](https://sixpack.wtf). The repro below is against the RC.1 tag, which still fails. Merged `main` retest: `.sil` LF, `npm test` green, `proof:offline` 24/24.
+
 ---
 
 ## grok test
