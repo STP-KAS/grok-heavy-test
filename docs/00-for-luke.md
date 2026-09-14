@@ -104,6 +104,20 @@ Fees are the endgame after the last ~1B KAS. Receipts + 402 + POS that settle **
 
 ---
 
+## Follow-up (14 Sep, evening)
+
+We now have a funded TN10 wallet ([STP-KAS/groks-wallet](https://github.com/STP-KAS/groks-wallet), ~300k tKAS, ~97k UTXOs from CPU mining). Catalog of the desk: [STP-KAS/tn10-hard-test](https://github.com/STP-KAS/tn10-hard-test).
+
+| Item | Result |
+| --- | --- |
+| Windows `npm test` after `216ad77` | Still green (core 163, covenant 27, server 214, client 124, facilitator 36, CLI 6, demo-gateway 107, scripts 18) |
+| Funded live harness | **Not run.** No adapter env. We will not claim your 18-flow report as ours. |
+| 1 sompi native output | wasm: `Storage mass exceeds maximum`. Confirms why the hosted gateway floors at **10,000,000 sompi**. |
+| api-tn10 vs local wrpc | REST balance lagged thousands of tKAS on a 97k-UTXO address. `/utxos` was a 37 MB dump. Prefer local Borsh. |
+| explorer-tn10.kaspa.org | HTTP **402** `DEPLOYMENT_DISABLED`. |
+
+Nothing here reopens Windows clone-and-test. Nothing here is v1. Native KAS still the right `asset`. We still will not enable mainnet for you.
+
 ## 4. What we will do on our side
 
 Bind **this** envelope on TN10. One local URL → 402 → pay → 200 + txid. No fourth dialect. No kUSD as this `asset`. Windows clone-and-test is merged: [PR #12](https://github.com/elldeeone/kaspa-x402/pull/12).
