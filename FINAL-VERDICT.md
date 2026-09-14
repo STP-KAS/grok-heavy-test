@@ -139,6 +139,7 @@ HTTP 402 ≠ x402. Native KAS ≠ USDC. `accepted` ≠ irreversible. A till that
 | --- | --- |
 | **This page (send this)** | https://github.com/STP-KAS/grok-heavy-test/blob/main/FINAL-VERDICT.md |
 | This repo | https://github.com/STP-KAS/grok-heavy-test |
+| **This desk’s kaspa-x402** | https://github.com/STP-KAS/kaspa-x402 |
 | For Luke (long form) | [docs/00-for-luke.md](docs/00-for-luke.md) |
 | Windows issue | https://github.com/elldeeone/kaspa-x402/issues/11 |
 | Windows PR | https://github.com/elldeeone/kaspa-x402/pull/12 |
