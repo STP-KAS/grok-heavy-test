@@ -7,6 +7,8 @@ Post: [x.com/elldeeone/status/2099316438704312512](https://x.com/elldeeone/statu
 Not Kaspa core. Not an audit. Not a v1 rubber stamp. Independent Grok pass of tag **`v1.0.0-rc.1`** (`040b1ec`), 14 Sep 2026, Windows, Node 24.
 
 **Send this repo:** [STP-KAS/grok-heavy-test](https://github.com/STP-KAS/grok-heavy-test)  
+**Final verdict:** [../FINAL-VERDICT.md](../FINAL-VERDICT.md)  
+**Windows issue (filed):** [elldeeone/kaspa-x402#11](https://github.com/elldeeone/kaspa-x402/issues/11) · [PR #12](https://github.com/elldeeone/kaspa-x402/pull/12)  
 **File-ready Windows issue:** [02-windows-repro.md](02-windows-repro.md)  
 **Full battle 1:** [01-kaspa-x402.md](01-kaspa-x402.md)
 
@@ -57,7 +59,9 @@ After deleting `\r` from the working tree, covenant tests passed (27). Hundreds 
 - 500 sompi vouchers still lock ~10M sompi-class capital. Say the lockup out loud.
 - Compute budget still guessed (`#243`).
 
-**For you:** file or accept the Windows issue. Close the gates you already listed before the tag loses the `rc`. Don’t take “Kaspa is in x402” until upstream lists you or rejects you in writing.
+**For you:** accept [issue #11](https://github.com/elldeeone/kaspa-x402/issues/11) and merge [PR #12](https://github.com/elldeeone/kaspa-x402/pull/12) (or land an equivalent). Close the gates you already listed before the tag loses the `rc`. Don’t take “Kaspa is in x402” until upstream lists you or rejects you in writing.
+
+This machine re-ran after the patch: covenant 27/27, full `npm test` green, `proof:offline` **24/24** `ok: true`.
 
 ---
 
@@ -101,7 +105,7 @@ Fees are the endgame after the last ~1B KAS. Receipts + 402 + POS that settle **
 
 ## 4. What we will do on our side
 
-Bind **this** envelope on TN10. One local URL → 402 → pay → 200 + txid. No fourth dialect. No kUSD as this `asset`. File the Windows repro on your tracker if you want it in-tree (body already in [02-windows-repro.md](02-windows-repro.md)).
+Bind **this** envelope on TN10. One local URL → 402 → pay → 200 + txid. No fourth dialect. No kUSD as this `asset`. Windows repro is on your tracker: [issue #11](https://github.com/elldeeone/kaspa-x402/issues/11), patch [PR #12](https://github.com/elldeeone/kaspa-x402/pull/12).
 
 ---
 
@@ -110,7 +114,10 @@ Bind **this** envelope on TN10. One local URL → 402 → pay → 200 + txid. No
 | | |
 | --- | --- |
 | This report | https://github.com/STP-KAS/grok-heavy-test |
+| **Final verdict** | https://github.com/STP-KAS/grok-heavy-test/blob/main/FINAL-VERDICT.md |
 | This page | https://github.com/STP-KAS/grok-heavy-test/blob/main/docs/00-for-luke.md |
+| Windows issue | https://github.com/elldeeone/kaspa-x402/issues/11 |
+| Windows PR | https://github.com/elldeeone/kaspa-x402/pull/12 |
 | Windows issue paste | https://github.com/STP-KAS/grok-heavy-test/blob/main/docs/02-windows-repro.md |
 | Your repo | https://github.com/elldeeone/kaspa-x402 |
 | Your post | https://x.com/elldeeone/status/2099316438704312512 |

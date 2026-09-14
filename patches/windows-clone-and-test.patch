@@ -1,0 +1,234 @@
+diff --git a/.gitattributes b/.gitattributes
+new file mode 100644
+index 0000000..b451414
+--- /dev/null
++++ b/.gitattributes
+@@ -0,0 +1,2 @@
++# Launch-identity SHA-256 is pinned to LF source bytes.
++*.sil text eol=lf
+diff --git a/packages/covenant/src/index.ts b/packages/covenant/src/index.ts
+index 82ca97e..5e8e678 100644
+--- a/packages/covenant/src/index.ts
++++ b/packages/covenant/src/index.ts
+@@ -1,4 +1,5 @@
+ export * from "./template.js";
++export * from "./source-bytes.js";
+ export * from "./reproducibility.js";
+ export * from "./tx-v1.js";
+ export * from "./exact-v0.js";
+diff --git a/packages/covenant/src/reproducibility.ts b/packages/covenant/src/reproducibility.ts
+index be0c2a7..1efad83 100644
+--- a/packages/covenant/src/reproducibility.ts
++++ b/packages/covenant/src/reproducibility.ts
+@@ -17,6 +17,7 @@ import {
+   voucherDigest,
+   voucherPreimage,
+ } from "./template.js";
++import { sha256SilSource } from "./source-bytes.js";
+ import type { EscrowTemplateParams, ScriptPublicKey } from "./template.js";
+ 
+ export const ESCROW_FIXTURE_COMPILER_NAME = "silverc";
+@@ -109,7 +110,7 @@ export function checkEscrowFixtureReproducibility(
+   const checks: string[] = [];
+ 
+   check(fixture.templateId === ESCROW_TEMPLATE_ID, "templateId");
+-  check(sha256Hex(typeof source === "string" ? Buffer.from(source, "utf8") : source) === fixture.sourceSha256, "sourceSha256");
++  check(sha256SilSource(source) === fixture.sourceSha256, "sourceSha256");
+   check(fixture.domainTag === ESCROW_VOUCHER_DOMAIN, "domainTag");
+   check(fixture.domainTagHash === ESCROW_VOUCHER_DOMAIN_TAG, "domainTagHash");
+   check(fixture.compiler.name === ESCROW_FIXTURE_COMPILER_NAME, "compiler.name");
+diff --git a/packages/covenant/src/source-bytes.ts b/packages/covenant/src/source-bytes.ts
+new file mode 100644
+index 0000000..cdd9882
+--- /dev/null
++++ b/packages/covenant/src/source-bytes.ts
+@@ -0,0 +1,17 @@
++import crypto from "node:crypto";
++
++/** Launch-identity source is LF bytes. Windows checkouts may still be CRLF. */
++export function canonicalizeSilSource(source: string | Uint8Array): Buffer {
++  const text =
++    typeof source === "string"
++      ? source
++      : Buffer.from(source).toString("utf8");
++  return Buffer.from(text.replace(/\r\n/g, "\n").replace(/\r/g, "\n"), "utf8");
++}
++
++export function sha256SilSource(source: string | Uint8Array): string {
++  return crypto
++    .createHash("sha256")
++    .update(canonicalizeSilSource(source))
++    .digest("hex");
++}
+diff --git a/packages/covenant/test/covenant.test.ts b/packages/covenant/test/covenant.test.ts
+index 04f4723..b1dc845 100644
+--- a/packages/covenant/test/covenant.test.ts
++++ b/packages/covenant/test/covenant.test.ts
+@@ -30,6 +30,7 @@ import {
+   kip10AdditiveScriptPublicKey,
+   parseKip10AdditiveRedeemScript,
+   serializedScriptPublicKey,
++  sha256SilSource,
+   voucherDigest,
+   voucherPreimage,
+ } from "../src/index.js";
+@@ -57,7 +58,7 @@ describe("stateful escrow covenant template", () => {
+     const item = fixture();
+     const source = fs.readFileSync(path.join(repoRoot, item.source));
+ 
+-    expect(crypto.createHash("sha256").update(source).digest("hex")).toBe(item.sourceSha256);
++    expect(sha256SilSource(source)).toBe(item.sourceSha256);
+     expect(checkEscrowFixtureReproducibility(item, source).ok).toBe(true);
+     expect(buildEscrowRedeemScript(item.sample.params)).toBe(item.sample.genesis.redeemScript);
+ 
+@@ -76,7 +77,7 @@ describe("stateful escrow covenant template", () => {
+     const source = fs.readFileSync(
+       path.join(repoRoot, ESCROW_V4_SOURCE_PATH),
+     );
+-    const sourceHash = crypto.createHash("sha256").update(source).digest("hex");
++    const sourceHash = sha256SilSource(source);
+     const compiledBaseHash = crypto
+       .createHash("sha256")
+       .update(Buffer.from(ESCROW_V4_COMPILED_BASE, "hex"))
+diff --git a/scripts/covenant-artifact-clean-room.test.mjs b/scripts/covenant-artifact-clean-room.test.mjs
+index 4b5067f..a8219bf 100644
+--- a/scripts/covenant-artifact-clean-room.test.mjs
++++ b/scripts/covenant-artifact-clean-room.test.mjs
+@@ -3,13 +3,15 @@ import crypto from "node:crypto";
+ import fs from "node:fs";
+ import test from "node:test";
+ 
++import { sha256SilSource } from "./sil-source.mjs";
++
+ const source = fs.readFileSync("contracts/kaspa-x402-escrow-v4.sil");
+ const fixture = JSON.parse(
+   fs.readFileSync("contracts/fixtures/kaspa-x402-escrow-v4.json", "utf8"),
+ );
+ 
+ test("published artifacts reconstruct genesis and successor without project packages", () => {
+-  assert.equal(sha256(source), fixture.sourceSha256);
++  assert.equal(sha256SilSource(source), fixture.sourceSha256);
+ 
+   const genesis = renderRedeemScript(fixture.sample.params);
+   assert.equal(genesis, fixture.sample.genesis.redeemScript);
+diff --git a/scripts/generate-covenant-fixture.mjs b/scripts/generate-covenant-fixture.mjs
+index a53aba2..340935d 100644
+--- a/scripts/generate-covenant-fixture.mjs
++++ b/scripts/generate-covenant-fixture.mjs
+@@ -8,6 +8,8 @@ import { fileURLToPath } from "node:url";
+ 
+ import { blake2b } from "blakejs";
+ 
++import { sha256SilSource } from "./sil-source.mjs";
++
+ const EXPECTED_COMPILER_COMMIT =
+   "3ed973335b59269293564805cc2c58a14595ec03";
+ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+@@ -136,7 +138,7 @@ const fixture = {
+   format: "kaspa-x402-covenant-fixture-v4",
+   templateId: "kaspa-x402-escrow-v4",
+   source: sourceRelative,
+-  sourceSha256: sha256(fs.readFileSync(source)),
++  sourceSha256: sha256SilSource(fs.readFileSync(source)),
+   domainTag,
+   domainTagHash,
+   compiler: {
+diff --git a/scripts/live-adapter-reference.mjs b/scripts/live-adapter-reference.mjs
+index c0c23d2..f2fb512 100644
+--- a/scripts/live-adapter-reference.mjs
++++ b/scripts/live-adapter-reference.mjs
+@@ -4992,7 +4992,7 @@ export function persistExactPaymentAttempt(dataDir, record) {
+   try {
+     handle = fs.openSync(temporary, "wx", 0o600);
+     fs.writeFileSync(handle, `${JSON.stringify(record, null, 2)}\n`);
+-    fs.fsyncSync(handle);
++    fsyncHandle(handle);
+     fs.closeSync(handle);
+     handle = undefined;
+     fs.linkSync(temporary, file);
+@@ -5070,12 +5070,31 @@ export async function withExactPaymentStoreLock(dataDir, operation) {
+   }
+ }
+ 
+-function fsyncDirectory(directory) {
+-  const handle = fs.openSync(directory, "r");
++function isNonFatalFsync(error) {
++  return (
++    error?.code === "EPERM" ||
++    error?.code === "EISDIR" ||
++    error?.code === "EINVAL"
++  );
++}
++
++function fsyncHandle(handle) {
+   try {
+     fs.fsyncSync(handle);
++  } catch (error) {
++    if (!isNonFatalFsync(error)) throw error;
++  }
++}
++
++function fsyncDirectory(directory) {
++  let handle;
++  try {
++    handle = fs.openSync(directory, "r");
++    fsyncHandle(handle);
++  } catch (error) {
++    if (!isNonFatalFsync(error)) throw error;
+   } finally {
+-    fs.closeSync(handle);
++    if (handle !== undefined) fs.closeSync(handle);
+   }
+ }
+ 
+diff --git a/scripts/proof-output-security.mjs b/scripts/proof-output-security.mjs
+index ba214ad..5125925 100644
+--- a/scripts/proof-output-security.mjs
++++ b/scripts/proof-output-security.mjs
+@@ -51,7 +51,9 @@ export function writePrivateProofJson(file, value, options = {}) {
+   fs.writeFileSync(resolved, stringifySanitizedProofOutput(value, options), {
+     mode: 0o600,
+   });
+-  fs.chmodSync(resolved, 0o600);
++  if (process.platform !== "win32") {
++    fs.chmodSync(resolved, 0o600);
++  }
+ }
+ 
+ function sanitizeOperationalUrl(candidate) {
+diff --git a/scripts/proof-output-security.test.mjs b/scripts/proof-output-security.test.mjs
+index 96215a3..fb2030a 100644
+--- a/scripts/proof-output-security.test.mjs
++++ b/scripts/proof-output-security.test.mjs
+@@ -113,8 +113,10 @@ test("live proof scrubs output and restricts report and recovery permissions", (
+     for (const secret of [rpcUrl, fundingWallet, "password", "query-secret"]) {
+       assert.equal(combined.includes(secret), false, secret);
+     }
+-    assert.equal(fs.statSync(reportFile).mode & 0o777, 0o600);
+-    assert.equal(fs.statSync(recoveryFile).mode & 0o777, 0o600);
++    if (process.platform !== "win32") {
++      assert.equal(fs.statSync(reportFile).mode & 0o777, 0o600);
++      assert.equal(fs.statSync(recoveryFile).mode & 0o777, 0o600);
++    }
+   } finally {
+     fs.rmSync(directory, { recursive: true, force: true });
+   }
+diff --git a/scripts/sil-source.mjs b/scripts/sil-source.mjs
+new file mode 100644
+index 0000000..d0a5637
+--- /dev/null
++++ b/scripts/sil-source.mjs
+@@ -0,0 +1,13 @@
++import crypto from "node:crypto";
++
++export function canonicalizeSilSource(source) {
++  const text = Buffer.from(source).toString("utf8");
++  return Buffer.from(text.replace(/\r\n/g, "\n").replace(/\r/g, "\n"), "utf8");
++}
++
++export function sha256SilSource(source) {
++  return crypto
++    .createHash("sha256")
++    .update(canonicalizeSilSource(source))
++    .digest("hex");
++}

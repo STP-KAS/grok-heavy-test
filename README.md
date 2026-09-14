@@ -1,6 +1,8 @@
 # Grok heavy test
 
-**Send this repo to Luke.** Report-back is [docs/00-for-luke.md](docs/00-for-luke.md) — his benefit first, Kaspa general second. Not Kaspa core. Not a KIP. Not an audit. Not a v1 rubber stamp.
+**Send this repo to Luke.** Final verdict is **[FINAL-VERDICT.md](FINAL-VERDICT.md)**. Long form: [docs/00-for-luke.md](docs/00-for-luke.md) — his benefit first, Kaspa general second. Not Kaspa core. Not a KIP. Not an audit. Not a v1 rubber stamp.
+
+Windows clone-and-test is filed and patched: [elldeeone/kaspa-x402#11](https://github.com/elldeeone/kaspa-x402/issues/11) · [PR #12](https://github.com/elldeeone/kaspa-x402/pull/12).
 
 Luke Dunshea ([@elldeeone](https://x.com/elldeeone)) asked humans **and agents** to read [kaspa-x402](https://github.com/elldeeone/kaspa-x402), build against it, test the assumptions, and try to break it before final v1.
 
@@ -14,10 +16,11 @@ This repo is that report. Sister battles (Ishum, master file) stay in `docs/` so
 
 | If you want | Go here |
 | --- | --- |
+| **Final verdict (send this)** | **[FINAL-VERDICT.md](FINAL-VERDICT.md)** |
 | **Report back to Luke** | **[docs/00-for-luke.md](docs/00-for-luke.md)** |
 | The whole pass in one screen | this README, start at [Verdicts](#verdicts) |
 | Battle 1 — kaspa-x402 (what Luke asked) | [docs/01-kaspa-x402.md](docs/01-kaspa-x402.md) |
-| Windows repro (file this on his repo) | [docs/02-windows-repro.md](docs/02-windows-repro.md) |
+| Windows repro (filed as #11) | [docs/02-windows-repro.md](docs/02-windows-repro.md) · [issue #11](https://github.com/elldeeone/kaspa-x402/issues/11) · [PR #12](https://github.com/elldeeone/kaspa-x402/pull/12) |
 | Battle 2 — Ishum | [docs/03-ishum.md](docs/03-ishum.md) |
 | Battle 3 — master file | [docs/04-master-file.md](docs/04-master-file.md) |
 | HTTP 402 is not x402 | [docs/05-402-is-not-x402.md](docs/05-402-is-not-x402.md) |
@@ -51,9 +54,9 @@ This is a **real x402 v2 binding** for native KAS. It is not another HTTP 402 co
 
 It is **not v1**, **not mainnet**, **not in the upstream x402 registry**, **not a registered CAIP namespace**. Do not call RC1 “Kaspa has x402.”
 
-Windows `npm test` **fails on a default checkout**. That is a real break of “clone it and run the tests.” It is not a break of the covenant math. After LF-normalizing the `.sil`, hundreds of unit tests passed. Hosted `/supported` is `x402Version: 2`, asset `KAS`, network `kaspa:testnet-10` only. Native KAS is the right asset. A future stable needs its own binding.
+Windows `npm test` **failed on a default checkout**. That is a real break of “clone it and run the tests.” It is not a break of the covenant math. After the patch in [PR #12](https://github.com/elldeeone/kaspa-x402/pull/12), this machine: covenant 27/27, full `npm test` green, `proof:offline` **24/24** `ok: true`. Hosted `/supported` is `x402Version: 2`, asset `KAS`, network `kaspa:testnet-10` only. Native KAS is the right asset. A future stable needs its own binding.
 
-Full: [docs/01-kaspa-x402.md](docs/01-kaspa-x402.md) · file-ready issue: [docs/02-windows-repro.md](docs/02-windows-repro.md)
+Full: [docs/01-kaspa-x402.md](docs/01-kaspa-x402.md) · filed: [issue #11](https://github.com/elldeeone/kaspa-x402/issues/11) · patch: [PR #12](https://github.com/elldeeone/kaspa-x402/pull/12)
 
 ### Battle 2 — Ishum
 
@@ -179,7 +182,7 @@ Desk law that did **not** change: skip centralised stables for dapps; no fourth 
 
 | Who | Do |
 | --- | --- |
-| Luke | Read battle 1. File or accept [docs/02-windows-repro.md](docs/02-windows-repro.md). Add `.gitattributes`. Do not take “v1” until the gates you already wrote are closed. |
+| Luke | Read [FINAL-VERDICT.md](FINAL-VERDICT.md). Accept [issue #11](https://github.com/elldeeone/kaspa-x402/issues/11). Merge [PR #12](https://github.com/elldeeone/kaspa-x402/pull/12). Add a Windows CI job. Do not take “v1” until the gates you already wrote are closed. |
 | This desk | Bind the envelope. Do not invent a fourth 402. Keep Ishum a till. Keep kUSD off the keypad until capital exists — and even then it is not this `asset`. |
 | Anyone else | HTTP 402 ≠ x402. Native KAS ≠ USDC. `accepted` ≠ irreversible. |
 
