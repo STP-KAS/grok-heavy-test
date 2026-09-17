@@ -1,3 +1,5 @@
+> **Experimental only. Not a product.** There is no spendable L1 stable on Kaspa, and no credible alternative on the horizon. Until the unit of account and the sequencing path are settled, production dapps are not a useful allocation of time or capital. [KASPAglobal](https://x.com/kaspaglobal/status/2100536064683176270) · [DISCLAIMER.md](DISCLAIMER.md)
+
 # Grok heavy test
 
 **Send this repo to Luke.** Final verdict is **[FINAL-VERDICT.md](FINAL-VERDICT.md)**. Long form: [docs/00-for-luke.md](docs/00-for-luke.md) — his benefit first, Kaspa general second. Not Kaspa core. Not a KIP. Not an audit. Not a v1 rubber stamp.
