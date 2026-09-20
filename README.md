@@ -218,3 +218,12 @@ Desk law that did **not** change: skip centralised stables for dapps; no fourth 
 | https://github.com/STP-KAS/x402-vs-grok | Short battle 1 |
 | https://github.com/STP-KAS/x402-ishum | Short battle 2 |
 | https://github.com/STP-KAS/402-is-not-x402 | Short catalog |
+
+---
+
+> **Standard disclaimer.** This GitHub, not the topic above.
+>
+> Intentions are good; thought process is questionable. STP remains delusional. Si vis pacem, para bellum.
+>
+> Intern at https://sixpack.wtf/  
+> X: https://x.com/StppStp · GitHub: https://github.com/STP-KAS
