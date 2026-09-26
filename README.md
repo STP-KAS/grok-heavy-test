@@ -57,7 +57,7 @@ Shorter twins from the same day: [x402-vs-grok](https://github.com/STP-KAS/x402-
 | Compiler they compiled with | SilverScript **v1.0.0** `3ed973335b59269293564805cc2c58a14595ec03` |
 | CAIP | [ChainAgnostic/namespaces#193](https://github.com/ChainAgnostic/namespaces/pull/193) **open** |
 | Machine | Windows, PowerShell, Node **v24.19.0**, `core.autocrlf=true` |
-| Intel | [STP-KAS/kaspa-master-file](https://github.com/STP-KAS/kaspa-master-file) freeze 13 Sep, then pin update [662c77a](https://github.com/STP-KAS/kaspa-master-file/commit/662c77a) |
+| Intel | [STP-KAS/kaspa-master-file](https://github.com/STP-KAS/kaspa-master-file) freeze 13 Sep, then pin update [c34eea0](https://github.com/STP-KAS/kaspa-master-file/commit/c34eea0) |
 
 PegLab and Gramlane were **not** used as sources of truth for battle 1.
 
@@ -184,7 +184,7 @@ USDT in does not un-decentralize GHOSTDAG. It also does not make Tether into Kas
 
 [kaspa-master-file](https://github.com/STP-KAS/kaspa-master-file) is this desk’s public pin list. Merged Active KIP = law. A tweet is not. The 402 pin was **R-X402: TN10 alpha**. Luke tagged **v1.0.0-rc.1 on 13 Sep**. The pin was stale the next morning.
 
-Updated in [662c77a](https://github.com/STP-KAS/kaspa-master-file/commit/662c77a):
+Updated in [c34eea0](https://github.com/STP-KAS/kaspa-master-file/commit/c34eea0):
 
 - Bind `elldeeone/kaspa-x402` **v1.0.0-rc.1**
 - TN10 only, mainnet blocked

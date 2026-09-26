@@ -42,6 +42,6 @@ Review 2026-09-14. Tag `v1.0.0-rc.1` @ `040b1ec`.
 | Claim | Evidence | Verdict |
 | --- | --- | --- |
 | R-X402 still “TN10 alpha” on 14 Sep morning | intel-pack / THINK-BIG vs GitHub tag 13 Sep | **was stale** |
-| Pin updated this pass | [662c77a](https://github.com/STP-KAS/kaspa-master-file/commit/662c77a) | **fixed** |
+| Pin updated this pass | [c34eea0](https://github.com/STP-KAS/kaspa-master-file/commit/c34eea0) | **fixed** |
 | k402 is Kaspa’s x402 | kccs#4 open dirty; Kali custom `kaspa-channel` | **wrong** |
 | KCC-0402 adopted | PR open | **wrong** |

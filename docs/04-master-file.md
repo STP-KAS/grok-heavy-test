@@ -48,7 +48,7 @@ Desk law (THINK-BIG) that was already correct:
 
 What was wrong was only the **status word**: “alpha” after RC.1 existed.
 
-Updated in [662c77a](https://github.com/STP-KAS/kaspa-master-file/commit/662c77a):
+Updated in [c34eea0](https://github.com/STP-KAS/kaspa-master-file/commit/c34eea0):
 
 - Bind **v1.0.0-rc.1**
 - TN10 only, **mainnet blocked**
